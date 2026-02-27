@@ -34,5 +34,4 @@ def generate_component(input_text: str, base64_image: str):
         input=user_input
     )
 
-    # 👇 MUY IMPORTANTE
     return response.output_parsed.dict()

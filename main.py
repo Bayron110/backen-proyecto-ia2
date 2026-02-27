@@ -6,10 +6,9 @@ from services.openai_service import generate_component
 
 app = FastAPI()
 
-# Permitir conexión desde Angular
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # en producción cambia esto
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,11 +21,9 @@ async def generate(
     instruction: str = Form(...)
 ):
 
-    # Leer imagen
     image_bytes = await file.read()
     base64_image = base64.b64encode(image_bytes).decode("utf-8")
 
-    # 🔥 AQUÍ VA ESTO
     result = generate_component(
         instruction,
         base64_image
